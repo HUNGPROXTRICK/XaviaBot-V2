@@ -1,68 +1,32 @@
 const config = {
     name: "help",
-    _name: {
-        "ar_SY": "الاوامر"
-    },
-    aliases: ["cmds", "commands"],
-    version: "1.0.3",
-    description: "Show all commands or command details",
+    aliases: ["menu", "cmds"],
+    version: "9.9.9",
+    description: "Hiển thị toàn bộ lệnh mà bot có thể sử dụng",
     usage: "[command] (optional)",
-    credits: "XaviaTeam"
+    credits: "IDK"
 }
 
 const langData = {
-    "en_US": {
-        "help.list": "{list}\n\n⇒ Total: {total} commands\n⇒ Use {syntax} [command] to get more information about a command.",
-        "help.commandNotExists": "Command {command} does not exists.",
+
+        "vi_VN": {
+        "help.list": "{list}\n\n➜ Bot có: {total} lệnh có thể sử dụng\n➜ Sử dụng: {syntax} [lệnh] để xem chi tiết về lệnh\n🔥 Bot DaiTo V2 🔥",
+        "help.commandNotExists": "➜ Lệnh {command} không tồn tại",
         "help.commandDetails": `
-            ⇒ Name: {name}
-            ⇒ Aliases: {aliases}
-            ⇒ Version: {version}
-            ⇒ Description: {description}
-            ⇒ Usage: {usage}
-            ⇒ Permissions: {permissions}
-            ⇒ Category: {category}
-            ⇒ Cooldown: {cooldown}
-            ⇒ Credits: {credits}
-        `,
-        "0": "Member",
-        "1": "Group Admin",
-        "2": "Bot Admin"
-    },
-    "vi_VN": {
-        "help.list": "{list}\n\n⇒ Tổng cộng: {total} lệnh\n⇒ Sử dụng {syntax} [lệnh] để xem thêm thông tin về lệnh.",
-        "help.commandNotExists": "Lệnh {command} không tồn tại.",
-        "help.commandDetails": `
-            ⇒ Tên: {name}
-            ⇒ Tên khác: {aliases}
-            ⇒ Phiên bản: {version}
-            ⇒ Mô tả: {description}
-            ⇒ Cách sử dụng: {usage}
-            ⇒ Quyền hạn: {permissions}
-            ⇒ Thể loại: {category}
-            ⇒ Thời gian chờ: {cooldown}
-            ⇒ Người viết: {credits}
+            📌Tên: {name}
+            🏷Tên khác: {aliases}
+            🔧Phiên bản: {version}
+            📢Mô tả: {description}
+            📃Cách sử dụng: {usage}
+            💡Quyền hạn: {permissions}
+            🔍Thể loại: {category}
+            ⌛Thời gian chờ: {cooldown}
+            📝Người viết: {credits}
         `,
         "0": "Thành viên",
         "1": "Quản trị nhóm",
         "2": "Quản trị bot"
-    },
-    "ar_SY": {
-        "help.list": "{list}\n\n⇒ المجموع: {total} الاوامر\n⇒ يستخدم {syntax} [امر] لمزيد من المعلومات حول الأمر.",
-        "help.commandNotExists": "امر {command} غير موجود.",
-        "help.commandDetails": `
-            ⇒ اسم: {name}
-            ⇒ اسم مستعار: {aliases}
-            ⇒ وصف: {description}
-            ⇒ استعمال: {usage}
-            ⇒ الصلاحيات: {permissions}
-            ⇒ فئة: {category}
-            ⇒ وقت الانتظار: {cooldown}
-            ⇒ الاعتمادات: {credits}
-        `,
-        "0": "عضو",
-        "1": "إدارة المجموعة",
-        "2": "ادارة البوت"
+   
     }
 }
 
@@ -93,7 +57,7 @@ async function onCall({ message, args, getLang, userPermissions, prefix }) {
         }
 
         let list = Object.keys(commands)
-            .map(category => `⌈ ${category.toUpperCase()} ⌋\n${commands[category].join(", ")}`)
+            .map(category => `☄️ ${category.toUpperCase()} ☄️\n${commands[category].join(", ")}`)
             .join("\n\n");
 
         message.reply(getLang("help.list", {
@@ -117,7 +81,7 @@ async function onCall({ message, args, getLang, userPermissions, prefix }) {
             version: command.version || "1.0.0",
             description: command.description || '',
             usage: `${prefix}${commandName} ${command.usage || ''}`,
-            permissions: command.permissions.map(p => getLang(String(p))).join(", "),
+            permissions: command.permissions.map(p => getLang(String(p))).join("----"),
             category: command.category,
             cooldown: command.cooldown || 3,
             credits: command.credits || ""
